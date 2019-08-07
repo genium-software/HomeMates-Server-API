@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://developer1:developer1_mongodb@homematescluster-saeth.mongodb.net/test?retryWrites=true",
+    "jwtSecret": "housematesWololo"
+  }
