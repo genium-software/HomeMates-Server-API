@@ -57,9 +57,9 @@ Below are the basic architecture of this repository:
     └── layout.pug
 ```    
 
-## Credits
+## Contributors
 Riordan Dervin Alfredo - Lead Software Engineer / Front-End Engineer | [profile website](https://rioalfredo.com) 
 
 Vincent Sutinah - Software Developer / Back-End Engineer | email: vincentsutinah@gmail.com
 
-Jason Anthony Kie - Software Developer / Native App Engineer | email:jasonkie@gmail.com
+Jason Anthony Kie - Software Developer / Native App Engineer | email:jasonakie28@gmail.com
