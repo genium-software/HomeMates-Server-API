@@ -1,12 +1,18 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var User = require('./User');
+var Bill = require('./Bill');
 
 var houseSchema = new Schema({
-    owner: User,
-    tenants: User, // Can be more than 1 User
+    owner: {type: Schema.ObjectId, ref: 'User'},
+    account: {
+        bsb: Number,
+        accNumber: Number,
+    },
+    tenants: [{type: Schema.ObjectId, ref: 'User'}], 
     bills: [{
-        current_bill: Bill,
-        history_bill: Bill
+        current_bill: {type: Schema.ObjectId, ref: 'Bill'},
+        history_bill: {type: Schema.ObjectId, ref: 'Bill'}
     }], 
     details: [{
         address: String,
