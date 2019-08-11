@@ -58,10 +58,8 @@ Below are the basic architecture of this repository:
 ```    
 
 ## Contributors
-Riordan Dervin Alfredo - Lead Software Engineer / Front-End Engineer | [profile website](https://rioalfredo.com) 
+__Riordan Dervin Alfredo__ - Lead Software Engineer / Front-End Engineer | [profile website](https://rioalfredo.com) 
 
-Vincent Sutinah - Software Developer / Back-End Engineer | email: vincentsutinah@gmail.com
+__Vincent Sutinah__ - Software Developer / Back-End Engineer | email: vincentsutinah@gmail.com
 
-Jason Anthony Kie - Software Developer / Native App Engineer | email:jasonakie28@gmail.com
-
-Testing change of README
+__Jason Anthony Kie__ - Software Developer / Native App Engineer | email:jasonakie28@gmail.com
