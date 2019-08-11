@@ -63,3 +63,5 @@ Riordan Dervin Alfredo - Lead Software Engineer / Front-End Engineer | [profile 
 Vincent Sutinah - Software Developer / Back-End Engineer | email: vincentsutinah@gmail.com
 
 Jason Anthony Kie - Software Developer / Native App Engineer | email:jasonakie28@gmail.com
+
+Testing change of README
