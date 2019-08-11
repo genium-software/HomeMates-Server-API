@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "jest": true,
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["client/src"]
+      }
+    },
+  },
+}
