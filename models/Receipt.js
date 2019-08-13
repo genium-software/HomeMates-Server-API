@@ -10,7 +10,8 @@ const receiptSchema = new Schema({
   },
   receipt_date_created: { //Date when receipt is created after splitting.
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   },
   payment_date: {
     type: Date
@@ -19,7 +20,7 @@ const receiptSchema = new Schema({
     type: Date,
     required: true
   },
-  price_paid: Number, // Change to Decimal128 if Decimal128 datatype provides floats (it should)
+  price_paid: Decimal128, 
   status: {
     type: String,
     default: type.billingStatus[0],

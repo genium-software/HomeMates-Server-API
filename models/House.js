@@ -4,36 +4,52 @@ const User = require('./User');
 const Bill = require('./Bill');
 
 const houseSchema = new Schema({
-  owner: { 
-    type: Schema.ObjectId, 
-    ref: "User" 
+  owner: {
+    type: Schema.ObjectId,
+    ref: "User"
   },
   account: {
-    bsb: Number,
-    accNumber: Number
+    bsb: {
+      type: Number,
+      required: [true, 'BSB number required'],
+      validator: function (v) {
+        return /\d{2} \d{4}/.test(v);
+      },
+      message: props => `${props.value} is not a valid BSB number!`
+
+    },
+    accNumber: {
+      type: Number,
+      required: [true, 'Account number required'],
+      validator: function (v) {
+        return /\d{4} \d{4}/.test(v);
+      },
+      message: props => `${props.value} is not a valid account number!`
+
+    }
   },
   tenants: [
-    { 
-      type: Schema.ObjectId, 
-      ref: "User" 
+    {
+      type: Schema.ObjectId,
+      ref: "User"
     }
   ],
   bills: [
     {
-      current_bill: { 
-        type: Schema.ObjectId, 
-        ref: "Bill" 
+      current_bill: {
+        type: Schema.ObjectId,
+        ref: "Bill"
       },
-      history_bill: { 
-        type: Schema.ObjectId, 
-        ref: "Bill" 
+      history_bill: {
+        type: Schema.ObjectId,
+        ref: "Bill"
       }
     }
   ],
   //This details of address is Australia only! Need to be refactored later if goes international :)
   details: [
     {
-      address: { 
+      address: {
         type: String,
         require: [true, 'Addess is not filled']
       },
@@ -41,7 +57,7 @@ const houseSchema = new Schema({
         type: String,
         require: [true, 'Suburb is not filled']
       },
-      state: { 
+      state: {
         type: String,
         enum: ['NSW', 'WA', 'QLD', 'VIC', 'SA', 'TAS', 'NT']
       },
