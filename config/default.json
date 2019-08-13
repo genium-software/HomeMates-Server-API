@@ -1,4 +1,9 @@
 {
     "mongoURI":"mongodb+srv://developer1:developer1_mongodb@homematescluster-saeth.mongodb.net/test?retryWrites=true",
-    "jwtSecret": "housematesWololo"
-  }
+    "jwtSecret": "housematesWololo",
+    "googleClient": {
+      "id": "339152637924-2tbhmare6t8tercp6je80fg0bj1ma1cp.apps.googleusercontent.com",
+      "secret": "uIqqTB5-Ck3xDV8UfkSD25Ul",
+      "callback": "http://localhost:5000/auth/google/callback"
+    }
+}
