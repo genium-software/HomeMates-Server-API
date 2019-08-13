@@ -4,53 +4,29 @@ const User = require('./User');
 const Bill = require('./Bill');
 
 const houseSchema = new Schema({
-<<<<<<< Updated upstream
-  owner: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  tenants: [
-    {
-      type: Schema.ObjectId,
-      ref: 'User'
-    }
-  ],
-=======
   owner: { 
     type: Schema.ObjectId, 
     ref: "User" 
   },
->>>>>>> Stashed changes
   account: {
     bsb: Number,
     accNumber: Number
   },
-<<<<<<< Updated upstream
-=======
   tenants: [
     { 
       type: Schema.ObjectId, 
       ref: "User" 
     }
   ],
->>>>>>> Stashed changes
   bills: [
     {
       current_bill: { 
         type: Schema.ObjectId, 
-<<<<<<< Updated upstream
-        ref: 'Bill' 
-      },
-      history_bill: { 
-        type: Schema.ObjectId, 
-        ref: 'Bill' 
-=======
         ref: "Bill" 
       },
       history_bill: { 
         type: Schema.ObjectId, 
         ref: "Bill" 
->>>>>>> Stashed changes
       }
     }
   ],

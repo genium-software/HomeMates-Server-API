@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-<<<<<<< Updated upstream
-const Receipt = require('./Receipt');
-=======
 const Receipt = require("./Receipt");
 const types = require('./types');
->>>>>>> Stashed changes
 
 const billSchema = new Schema({
   categories: {

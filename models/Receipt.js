@@ -1,17 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-<<<<<<< Updated upstream
-const User = require('./User');
-
-const receiptSchema = new Schema({
-  tenant: { 
-      type: Schema.ObjectId, 
-      ref: 'User' 
-    },
-  payment_date: Date,
-  payment_due: Date,
-  price_paid: Number // Change to Decimal128 if Decimal128 datatype provides floats (it should)
-=======
 const User = require("./User");
 const types = require('./types')
 
@@ -37,7 +25,6 @@ const receiptSchema = new Schema({
     default: type.billingStatus[0],
     enum: types.billingStatus
   }
->>>>>>> Stashed changes
 });
 
 module.exports = Receipt = mongoose.model('Receipt', receiptSchema);
