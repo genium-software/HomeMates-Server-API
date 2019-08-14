@@ -19,6 +19,7 @@ router.get('/login', function(req, res, next) {
 router.post('/register', function(req, res, next) {
   
     res.send('Skeleton POST request for /register endpoint.');
+    express.next();
 
 })
 
