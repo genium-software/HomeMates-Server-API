@@ -20,10 +20,10 @@ const receiptSchema = new Schema({
     type: Date,
     required: true
   },
-  price_paid: Decimal128, 
+  price_paid: Schema.Types.Decimal128, // Decimal128 to allow support for float numbers (2 d.p.)
   status: {
     type: String,
-    default: type.billingStatus[0],
+    default: types.billingStatus[0],
     enum: types.billingStatus
   }
 });

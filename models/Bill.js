@@ -10,7 +10,7 @@ const billSchema = new Schema({
     enum: types.billingCategory
   },
   due_date: Date,
-  due_price: Decimal128, // Should be Decimal128 (if it supports float)
+  due_price: Schema.Types.Decimal128, // Decimal128 to allow float/2 d.p.
   receipts: {
     type: Schema.ObjectId,
     ref: 'Receipt'
