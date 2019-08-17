@@ -22,3 +22,13 @@ const userSchema = new Schema({
 });
 
 module.exports = User = mongoose.model("User", userSchema);
+
+exports.createUser = (req, res) => {
+  const user = new User({
+    name: req.body.name,
+    role: req.body.role,
+    house: req.body.house,
+    payment_history: req.body.payment_history
+  });
+  return user.save();
+}

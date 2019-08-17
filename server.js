@@ -9,6 +9,7 @@ var authRouter = require('./routes/auth');
 
 const mongoose = require('mongoose');
 const config = require('config');
+const bodyParser = require('body-parser');
 
 // DB config
 const db = config.get('mongoURI');
@@ -34,11 +35,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.json());
+
+// Set 'views' directory for any views being rendered res.render()
+app.set('views', path.join(__dirname, 'views'));
+
 app.use('/', indexRouter);
-app.use('/login', authRouter);
+// app.use('/login', authRouter);
 app.use('/register', authRouter);
-app.use('/reset_pass', authRouter);
-app.use('/change_pass', authRouter);
+// app.use('/reset_pass', authRouter);
+// app.use('/change_pass', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
