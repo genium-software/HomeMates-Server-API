@@ -1,8 +1,20 @@
-const UserModel = require('../models/User');
+const mongoose = require('mongoose');
 
-exports.insert = (req, res) => {
-    UserModel.createUser(req.body)
-        .then((result) => {
-            res.status(201).send({id: result._id});
-        });
-};
+const UserController = {
+  async register(req, res, next) {
+    const User = mongoose.model('User');
+    const user = new User({
+      email: req.body.email,
+      name: req.body.name,
+      password: req.body.password,
+    });
+    try {
+      await user.save();
+      return rez.result(res, true);
+    } catch (e) {
+      next(e);
+    }
+  },
+}
+
+module.exports = UserController;

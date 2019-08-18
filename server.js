@@ -5,8 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-
 const mongoose = require('mongoose');
 const config = require('config');
 const bodyParser = require('body-parser');
@@ -25,10 +23,6 @@ mongoose
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,14 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
-// Set 'views' directory for any views being rendered res.render()
-app.set('views', path.join(__dirname, 'views'));
-
 app.use('/', indexRouter);
-// app.use('/login', authRouter);
-app.use('/register', authRouter);
-// app.use('/reset_pass', authRouter);
-// app.use('/change_pass', authRouter);
+app.use('/api/v1/auth', require('./routes/auth'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
