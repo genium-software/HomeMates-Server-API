@@ -1,13 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
 const config = require('config');
-const bodyParser = require('body-parser');
+const passport = require('passport');
+
+/*
+var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var resetRouter = require('./routes/reset_pass');
+var editRouter = require('./routes/change_pass');
+*/
 
 // DB config
 const db = config.get('mongoURI');
@@ -21,7 +27,14 @@ mongoose
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err)); //TODO: send it to the front-end so it can be shown if error is happening
 
-var app = express();
+let app = express();
+
+// cookieSession config
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
+    keys: ['randomstringhere1234']
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,8 +44,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
-app.use('/', indexRouter);
+let passportRouter = require('./routes/auth/googleAuth')(passport);
+app.use('/', passportRouter);
 app.use('/api/v1/auth', require('./routes/auth'));
+//using passport
+app.use(passport.initialize()); // Used to initialize passport
+app.use(passport.session()); // Used to persist login sessions
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
