@@ -36,17 +36,18 @@ app.use(cookieSession({
     keys: ['randomstringhere1234']
 }));
 
+app.engine('html', require('jade').renderFile);
+app.set('view engine', 'html');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.json());
-
 let passportRouter = require('./routes/auth/googleAuth')(passport);
 app.use('/', passportRouter);
-app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/auth', require('./routes/auth/auth'));
 //using passport
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
