@@ -7,10 +7,11 @@ const UserController = {
       email: req.body.email,
       name: req.body.name,
       password: req.body.password,
+      role: req.body.role
     });
     try {
       await user.save();
-      return rez.result(res, true);
+      return res.send('User Registered!');
     } catch (e) {
       next(e);
     }

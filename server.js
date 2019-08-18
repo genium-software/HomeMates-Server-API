@@ -7,13 +7,8 @@ const mongoose = require('mongoose');
 const config = require('config');
 const passport = require('passport');
 
-/*
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
-var resetRouter = require('./routes/reset_pass');
-var editRouter = require('./routes/change_pass');
-*/
+// Load from local files
+const UserSchema = require('./models/User');
 
 // DB config
 const db = config.get('mongoURI');
@@ -36,21 +31,26 @@ app.use(cookieSession({
     keys: ['randomstringhere1234']
 }));
 
-app.engine('html', require('jade').renderFile);
-app.set('view engine', 'html');
-
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//OAuth2 Login & Registration using passport
 let passportRouter = require('./routes/auth/googleAuth')(passport);
 app.use('/', passportRouter);
-app.use('/api/v1/auth', require('./routes/auth/auth'));
-//using passport
 app.use(passport.initialize()); // Used to initialize passport
 app.use(passport.session()); // Used to persist login sessions
+
+//Initial Model
+mongoose.model('User', UserSchema);
+
+//Routes
+app.use('/api/v1/auth', require('./routes/auth/auth'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
