@@ -19,18 +19,42 @@ const UserController = {
 
   async login(req, res, next) {
     try {
-      await User.find({ // Find user document with the provided inputs
+      await User.find({
+        // Find user document with the provided inputs
         email: req.body.email,
         password: req.body.password
       }).then(user => {
-        if (
-          user[0].email === req.body.email && // Validate email and password
-          user[0].password === req.body.password
-        ) {
-          return res.status(200).send("Login successful!"); // Validation successful
+        if (!user[0]) {
+          // No user is found in DB
+          return res.status(400).send("Invalid email/password!");
         } else {
-          return res.status(400).send("Invalid username/password!");
-        } // Validation unsuccessful
+          if (
+            user[0].email === req.body.email && // Validate email and password
+            user[0].password === req.body.password
+          ) {
+            return res.status(200).send("Login successful!");
+          } else {
+            return res.status(400).send("Invalid email/password!");
+          }
+        } // Validation successful
+      });
+    } catch (e) {
+      next(e);
+    }
+  },
+
+  async changePass(req, res, next) {
+    try {
+      await User.find({ email: req.body.email }).then(user => {
+        if (!user[0]) {
+          // Validate input email to see if it exists
+          return res.status(400).send("Email does not exist!");
+        } else {
+          // If it exists, change existing password with input password
+          user[0].password = req.body.password;
+          user[0].save();
+          return res.status(200).send("Password has been changed!");
+        }
       });
     } catch (e) {
       next(e);
