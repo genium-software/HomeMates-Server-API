@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const randomize = require('randomatic');
 const User = mongoose.model("User");
 
 const UserController = {
@@ -11,7 +12,9 @@ const UserController = {
     });
     try {
       await user.save();
-      return res.status(201).send("User Registered!");
+      const code = randomize('Aa0', 6);
+      return res.status(201).send(`User Registered! Your code is: ${code}`);
+
     } catch (e) {
       next(e);
     }
