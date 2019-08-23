@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const randomize = require('randomatic');
-const User = mongoose.model("User");
+const User = mongoose.model('User');
 
 const UserController = {
   async register(req, res, next) {
